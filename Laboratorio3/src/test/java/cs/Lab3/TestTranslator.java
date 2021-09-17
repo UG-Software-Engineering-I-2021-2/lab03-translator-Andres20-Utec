@@ -1,8 +1,7 @@
 package cs.Lab3;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 import org.testng.Assert;
-
 import java.io.IOException;
 
 public class TestTranslator {

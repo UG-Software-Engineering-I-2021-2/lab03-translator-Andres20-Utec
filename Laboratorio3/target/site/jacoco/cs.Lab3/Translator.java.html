@@ -11,67 +11,66 @@ public class Translator {
     static final String CLIENT_SECRET = &quot;PUBLIC_SECRET&quot;;
     static final String ENDPOINT = &quot;http://api.whatsmate.net/v1/translation/translate&quot;;
 
-<span class="nc" id="L14">    public Translator(){</span>
+<span class="fc" id="L14">    public Translator(){</span>
 
-<span class="nc" id="L16">    }</span>
+<span class="fc" id="L16">    }</span>
 
     public static String getJsonPayLoad(String fromLang, String toLang, String text) {
-<span class="nc" id="L19">        return new StringBuilder()</span>
-<span class="nc" id="L20">                .append(&quot;{&quot;)</span>
-<span class="nc" id="L21">                .append(&quot;\&quot;fromLang\&quot;:\&quot;&quot;)</span>
-<span class="nc" id="L22">                .append(fromLang)</span>
-<span class="nc" id="L23">                .append(&quot;\&quot;,&quot;)</span>
-<span class="nc" id="L24">                .append(&quot;\&quot;toLang\&quot;:\&quot;&quot;)</span>
-<span class="nc" id="L25">                .append(toLang)</span>
-<span class="nc" id="L26">                .append(&quot;\&quot;,&quot;)</span>
-<span class="nc" id="L27">                .append(&quot;\&quot;text\&quot;:\&quot;&quot;)</span>
-<span class="nc" id="L28">                .append(text)</span>
-<span class="nc" id="L29">                .append(&quot;\&quot;&quot;)</span>
-<span class="nc" id="L30">                .append(&quot;}&quot;)</span>
-<span class="nc" id="L31">                .toString();</span>
+<span class="fc" id="L19">        return new StringBuilder()</span>
+<span class="fc" id="L20">                .append(&quot;{&quot;)</span>
+<span class="fc" id="L21">                .append(&quot;\&quot;fromLang\&quot;:\&quot;&quot;)</span>
+<span class="fc" id="L22">                .append(fromLang)</span>
+<span class="fc" id="L23">                .append(&quot;\&quot;,&quot;)</span>
+<span class="fc" id="L24">                .append(&quot;\&quot;toLang\&quot;:\&quot;&quot;)</span>
+<span class="fc" id="L25">                .append(toLang)</span>
+<span class="fc" id="L26">                .append(&quot;\&quot;,&quot;)</span>
+<span class="fc" id="L27">                .append(&quot;\&quot;text\&quot;:\&quot;&quot;)</span>
+<span class="fc" id="L28">                .append(text)</span>
+<span class="fc" id="L29">                .append(&quot;\&quot;&quot;)</span>
+<span class="fc" id="L30">                .append(&quot;}&quot;)</span>
+<span class="fc" id="L31">                .toString();</span>
     }
 
     public static String translate(String fromLang, String toLang, String text) throws IOException {
 
-<span class="nc bnc" id="L36" title="All 4 branches missed.">        if (text.length() &gt;= 500 ||text.length() == 0) {</span>
+<span class="pc bpc" id="L36" title="2 of 4 branches missed.">        if (text.length() &gt;= 500 ||text.length() == 0) {</span>
 <span class="nc" id="L37">            throw new IOException(&quot;Se excedio el numero de caracteres&quot;);</span>
         }
 
-<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (fromLang.length() == 0) {</span>
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">        if (fromLang.length() == 0) {</span>
 <span class="nc" id="L41">            throw new IOException(&quot;No se agrego idioma de origen&quot;);</span>
         }
 
-<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (toLang.length() == 0) {</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if (toLang.length() == 0) {</span>
 <span class="nc" id="L45">            throw new IOException(&quot;No se agrego idioma de destino&quot;);</span>
         }
 
-<span class="nc" id="L48">        String jsonPayload = getJsonPayLoad(fromLang, toLang, text);</span>
+<span class="fc" id="L48">        String jsonPayload = getJsonPayLoad(fromLang, toLang, text);</span>
 
-<span class="nc" id="L50">        URL url = new URL(ENDPOINT);</span>
-<span class="nc" id="L51">        HttpURLConnection conn = (HttpURLConnection) url.openConnection();</span>
-<span class="nc" id="L52">        conn.setDoOutput(true);</span>
-<span class="nc" id="L53">        conn.setRequestMethod(&quot;POST&quot;);</span>
-<span class="nc" id="L54">        conn.setRequestProperty(&quot;X-WM-CLIENT-ID&quot;, CLIENT_ID);</span>
-<span class="nc" id="L55">        conn.setRequestProperty(&quot;X-WM-CLIENT-SECRET&quot;, CLIENT_SECRET);</span>
-<span class="nc" id="L56">        conn.setRequestProperty(&quot;Content-Type&quot;, &quot;application/json&quot;);</span>
+<span class="fc" id="L50">        URL url = new URL(ENDPOINT);</span>
+<span class="fc" id="L51">        HttpURLConnection conn = (HttpURLConnection) url.openConnection();</span>
+<span class="fc" id="L52">        conn.setDoOutput(true);</span>
+<span class="fc" id="L53">        conn.setRequestMethod(&quot;POST&quot;);</span>
+<span class="fc" id="L54">        conn.setRequestProperty(&quot;X-WM-CLIENT-ID&quot;, CLIENT_ID);</span>
+<span class="fc" id="L55">        conn.setRequestProperty(&quot;X-WM-CLIENT-SECRET&quot;, CLIENT_SECRET);</span>
+<span class="fc" id="L56">        conn.setRequestProperty(&quot;Content-Type&quot;, &quot;application/json&quot;);</span>
 
-<span class="nc" id="L58">        OutputStream os = conn.getOutputStream();</span>
-<span class="nc" id="L59">        os.write(jsonPayload.getBytes());</span>
-<span class="nc" id="L60">        os.flush();</span>
-<span class="nc" id="L61">        os.close();</span>
+<span class="fc" id="L58">        OutputStream os = conn.getOutputStream();</span>
+<span class="fc" id="L59">        os.write(jsonPayload.getBytes());</span>
+<span class="fc" id="L60">        os.flush();</span>
+<span class="fc" id="L61">        os.close();</span>
 
-<span class="nc" id="L63">        int statusCode = conn.getResponseCode();</span>
-<span class="nc" id="L64">        System.out.println(&quot;Status Code: &quot; + statusCode);</span>
-<span class="nc" id="L65">        BufferedReader br = new BufferedReader(new InputStreamReader(</span>
-<span class="nc bnc" id="L66" title="All 2 branches missed.">                (statusCode == 200) ? conn.getInputStream() : conn.getErrorStream()</span>
+<span class="fc" id="L63">        int statusCode = conn.getResponseCode();</span>
+<span class="fc" id="L64">        BufferedReader br = new BufferedReader(new InputStreamReader(</span>
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">                (statusCode == 200) ? conn.getInputStream() : conn.getErrorStream()</span>
         ));
         String output;
-<span class="nc" id="L69">        StringBuilder textTranslated = new StringBuilder();</span>
-<span class="nc bnc" id="L70" title="All 2 branches missed.">        while ((output = br.readLine()) != null) {</span>
-<span class="nc" id="L71">            textTranslated.append(output);</span>
+<span class="fc" id="L68">        StringBuilder textTranslated = new StringBuilder();</span>
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        while ((output = br.readLine()) != null) {</span>
+<span class="fc" id="L70">            textTranslated.append(output);</span>
         }
-<span class="nc" id="L73">        conn.disconnect();</span>
-<span class="nc" id="L74">        return textTranslated.toString();</span>
+<span class="fc" id="L72">        conn.disconnect();</span>
+<span class="fc" id="L73">        return textTranslated.toString();</span>
     }
 
 }

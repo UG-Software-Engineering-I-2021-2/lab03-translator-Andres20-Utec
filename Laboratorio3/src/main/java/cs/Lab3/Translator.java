@@ -61,7 +61,6 @@ public class Translator {
         os.close();
 
         int statusCode = conn.getResponseCode();
-        System.out.println("Status Code: " + statusCode);
         BufferedReader br = new BufferedReader(new InputStreamReader(
                 (statusCode == 200) ? conn.getInputStream() : conn.getErrorStream()
         ));

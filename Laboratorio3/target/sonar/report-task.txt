@@ -3,5 +3,5 @@ projectKey=org.example:lab03-translator-Andres20-Utec
 serverUrl=https://sonarcloud.io
 serverVersion=8.0.0.23273
 dashboardUrl=https://sonarcloud.io/dashboard?id=org.example%3Alab03-translator-Andres20-Utec
-ceTaskId=AXvx6uc0REA8Nx_-QwfJ
-ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXvx6uc0REA8Nx_-QwfJ
+ceTaskId=AXvyCAN2hiWD5loLvC_G
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AXvyCAN2hiWD5loLvC_G

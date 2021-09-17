@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="0" passed="0" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2021-09-16T23:00:34 PET" name="cs.Lab3.TestTranslator" finished-at="2021-09-16T23:00:34 PET" duration-ms="18">
+  <suite started-at="2021-09-16T23:32:51 PET" name="cs.Lab3.TestTranslator" finished-at="2021-09-16T23:32:53 PET" duration-ms="1833">
     <groups>
     </groups>
-    <test started-at="2021-09-16T23:00:34 PET" name="Command line test" finished-at="2021-09-16T23:00:34 PET" duration-ms="18">
+    <test started-at="2021-09-16T23:32:51 PET" name="Command line test" finished-at="2021-09-16T23:32:53 PET" duration-ms="1833">
+      <class name="cs.Lab3.TestTranslator">
+        <test-method signature="testTranslate()[pri:0, instance:cs.Lab3.TestTranslator@41330d4f]" started-at="2021-09-16T23:32:51 PET" name="testTranslate" finished-at="2021-09-16T23:32:53 PET" duration-ms="1625" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testTranslate -->
+      </class> <!-- cs.Lab3.TestTranslator -->
     </test> <!-- Command line test -->
   </suite> <!-- cs.Lab3.TestTranslator -->
 </testng-results>
