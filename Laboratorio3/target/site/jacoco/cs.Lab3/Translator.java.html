@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Translator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">lab03-translator-Andres20-Utec</a> &gt; <a href="index.source.html" class="el_package">cs.Lab3</a> &gt; <span class="el_source">Translator.java</span></div><h1>Translator.java</h1><pre class="source lang-java linenums">package cs.Lab3;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class Translator {
+    static final String CLIENT_ID = &quot;FREE_TRIAL_ACCOUNT&quot;;
+    static final String CLIENT_SECRET = &quot;PUBLIC_SECRET&quot;;
+    static final String ENDPOINT = &quot;http://api.whatsmate.net/v1/translation/translate&quot;;
+
+<span class="nc" id="L14">    public Translator(){</span>
+
+<span class="nc" id="L16">    }</span>
+
+    public static String getJsonPayLoad(String fromLang, String toLang, String text) {
+<span class="nc" id="L19">        return new StringBuilder()</span>
+<span class="nc" id="L20">                .append(&quot;{&quot;)</span>
+<span class="nc" id="L21">                .append(&quot;\&quot;fromLang\&quot;:\&quot;&quot;)</span>
+<span class="nc" id="L22">                .append(fromLang)</span>
+<span class="nc" id="L23">                .append(&quot;\&quot;,&quot;)</span>
+<span class="nc" id="L24">                .append(&quot;\&quot;toLang\&quot;:\&quot;&quot;)</span>
+<span class="nc" id="L25">                .append(toLang)</span>
+<span class="nc" id="L26">                .append(&quot;\&quot;,&quot;)</span>
+<span class="nc" id="L27">                .append(&quot;\&quot;text\&quot;:\&quot;&quot;)</span>
+<span class="nc" id="L28">                .append(text)</span>
+<span class="nc" id="L29">                .append(&quot;\&quot;&quot;)</span>
+<span class="nc" id="L30">                .append(&quot;}&quot;)</span>
+<span class="nc" id="L31">                .toString();</span>
+    }
+
+    public static String translate(String fromLang, String toLang, String text) throws IOException {
+
+<span class="nc bnc" id="L36" title="All 4 branches missed.">        if (text.length() &gt;= 500 ||text.length() == 0) {</span>
+<span class="nc" id="L37">            throw new IOException(&quot;Se excedio el numero de caracteres&quot;);</span>
+        }
+
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (fromLang.length() == 0) {</span>
+<span class="nc" id="L41">            throw new IOException(&quot;No se agrego idioma de origen&quot;);</span>
+        }
+
+<span class="nc bnc" id="L44" title="All 2 branches missed.">        if (toLang.length() == 0) {</span>
+<span class="nc" id="L45">            throw new IOException(&quot;No se agrego idioma de destino&quot;);</span>
+        }
+
+<span class="nc" id="L48">        String jsonPayload = getJsonPayLoad(fromLang, toLang, text);</span>
+
+<span class="nc" id="L50">        URL url = new URL(ENDPOINT);</span>
+<span class="nc" id="L51">        HttpURLConnection conn = (HttpURLConnection) url.openConnection();</span>
+<span class="nc" id="L52">        conn.setDoOutput(true);</span>
+<span class="nc" id="L53">        conn.setRequestMethod(&quot;POST&quot;);</span>
+<span class="nc" id="L54">        conn.setRequestProperty(&quot;X-WM-CLIENT-ID&quot;, CLIENT_ID);</span>
+<span class="nc" id="L55">        conn.setRequestProperty(&quot;X-WM-CLIENT-SECRET&quot;, CLIENT_SECRET);</span>
+<span class="nc" id="L56">        conn.setRequestProperty(&quot;Content-Type&quot;, &quot;application/json&quot;);</span>
+
+<span class="nc" id="L58">        OutputStream os = conn.getOutputStream();</span>
+<span class="nc" id="L59">        os.write(jsonPayload.getBytes());</span>
+<span class="nc" id="L60">        os.flush();</span>
+<span class="nc" id="L61">        os.close();</span>
+
+<span class="nc" id="L63">        int statusCode = conn.getResponseCode();</span>
+<span class="nc" id="L64">        System.out.println(&quot;Status Code: &quot; + statusCode);</span>
+<span class="nc" id="L65">        BufferedReader br = new BufferedReader(new InputStreamReader(</span>
+<span class="nc bnc" id="L66" title="All 2 branches missed.">                (statusCode == 200) ? conn.getInputStream() : conn.getErrorStream()</span>
+        ));
+        String output;
+<span class="nc" id="L69">        StringBuilder textTranslated = new StringBuilder();</span>
+<span class="nc bnc" id="L70" title="All 2 branches missed.">        while ((output = br.readLine()) != null) {</span>
+<span class="nc" id="L71">            textTranslated.append(output);</span>
+        }
+<span class="nc" id="L73">        conn.disconnect();</span>
+<span class="nc" id="L74">        return textTranslated.toString();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
